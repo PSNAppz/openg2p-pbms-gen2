@@ -504,6 +504,8 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             response = requests.post(endpoint, json=payload, headers=headers, timeout=10)
             response.raise_for_status()
             response_json = response.json()
+            _logger.info("SQL Query: %s", sql_query)
+            _logger.info("Request Payload: %s", payload)
             _logger.info("get_beneficiaries response: %s", response_json)
         except Exception as e:
             _logger.error("API call failed: %s", e)
