@@ -522,7 +522,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
                     current_page=page,
                     page_size=page_size,
                     sort_by=order_by_condition or "internal_record_id asc",
-                    search_text=sql_query or "TRUE",
+                    search_text=sql_query or "",
                 ),
                 request_payload=BeneficiarySearchRequestPayload(
                     beneficiary_list_id=wizard.beneficiary_list_uuid,
