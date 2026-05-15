@@ -397,7 +397,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
     def _build_sql_query(self, odoo_domain, target_registry):
         sql_query=""
         order_by_field="internal_record_id"
-        _logger.debug(
+        _logger.info(
             "_build_sql_query: start odoo_domain=%r target_registry=%r",
             odoo_domain,
             target_registry,
@@ -412,7 +412,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             sql_query = "Invalid search term"
             return sql_query, order_by_field
 
-        _logger.debug("_build_sql_query: domain_value=%r", domain_value)
+        _logger.info("_build_sql_query: domain_value=%r", domain_value)
 
         target_model_name = G2PTargetModelMapping.get_target_model_name(target_registry)
 
@@ -425,7 +425,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             return sql_query, order_by_field
 
         target_model = self.env[target_model_name]
-        _logger.debug(
+        _logger.info(
             "_build_sql_query: target_model_name=%r model=%s",
             target_model_name,
             target_model._name,
@@ -440,7 +440,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             sql_query = "Error calculating query"
             return sql_query, order_by_field
 
-        _logger.debug(
+        _logger.info(
             "_build_sql_query: _where_calc ok query_type=%s",
             type(query).__name__,
         )
@@ -454,7 +454,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             sql_query = "Error generating SQL"
             return sql_query, order_by_field
 
-        _logger.debug(
+        _logger.info(
             "_build_sql_query: get_sql where_clause=%r "
             "where_clause_params=%r param_count=%s",
             where_clause,
@@ -473,7 +473,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             map(lambda x: "'" + str(x) + "'", where_clause_params)
         )
 
-        _logger.debug(
+        _logger.info(
             "_build_sql_query: where_str=%r query_str=%r formatted_params=%r",
             where_str,
             query_str,
@@ -486,7 +486,7 @@ class G2PBGTaskSummaryWizard(models.TransientModel):
             sql_query = formatted_query
             _logger.info("Query: %s", sql_query)
             if not (sql_query or "").strip():
-                _logger.debug(
+                _logger.info(
                     "_build_sql_query: final sql_query is empty "
                     "(empty where is normal for unrestricted domain [])"
                 )
